@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/states/MoveState.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/states/GravityState.gd" type="Script" id=4]
 [ext_resource path="res://src/states/JumpState.gd" type="Script" id=5]
 [ext_resource path="res://src/states/FallState.gd" type="Script" id=6]
+[ext_resource path="res://src/states/DashState.gd" type="Script" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 24.0
@@ -37,3 +38,13 @@ script = ExtResource( 5 )
 
 [node name="FallState" type="Node" parent="States"]
 script = ExtResource( 6 )
+
+[node name="DashState" type="Node" parent="States"]
+script = ExtResource( 7 )
+
+[node name="AimPivot" type="Node2D" parent="."]
+visible = false
+
+[node name="Aim" type="Line2D" parent="AimPivot"]
+points = PoolVector2Array( 24, 0, 48, 0 )
+width = 4.0

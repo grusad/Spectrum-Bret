@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+onready var aim_pivot = $AimPivot
 
 var velocity = Vector2()
 var states = [] setget push_state
@@ -13,16 +14,24 @@ func _ready():
 func _physics_process(delta):
 	
 	for state in states:
-		state.physics_process(delta)
-		
+		state.physics_process(delta)	
+		print(state.name)
+	print("")
+
 	velocity = move_and_slide(velocity, Vector2.UP)
+	
+func _process(delta):
+	for state in states:
+		state.process(delta)
 
 func apply_horizontal_movement(input_direction, acceleration, max_walk_speed, delta):
-	velocity.x = lerp(velocity.x, input_direction.x * max_walk_speed, acceleration)
+	velocity.x = lerp(velocity.x, input_direction.x * max_walk_speed, acceleration * delta)
 	
-func apply_horizontal_friction(friction):
-	velocity.x = lerp(velocity.x, 0, friction)
+func apply_horizontal_friction(friction, delta):
+	velocity.x = lerp(velocity.x, 0, friction * delta)
 	
+func apply_friction(friction, delta):
+	velocity = lerp(velocity, Vector2.ZERO, friction * delta)
 
 func apply_force(direction, force):
 	
@@ -43,5 +52,9 @@ func push_state(state):
 	states.push_back(state)
 	
 func has_state(state):
-	return true if states.has(state) else false
+	if typeof(state) == TYPE_STRING:
+		return states.has(get_state(state))
+	return states.has(state)
+	
+
 	
