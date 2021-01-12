@@ -1,6 +1,7 @@
 extends State
 
 var time_deacceleration = 0.15
+var min_time_scale = 0.05
 var rotation_speed = 500
 var force = 2000
 var has_released_dash = false
@@ -21,15 +22,18 @@ func enter_state(parent, previous_state):
 func exit_state():
 	timer = 0
 	has_released_dash = false
-	temporary_line.remove()
-	temporary_line = null
+	if temporary_line:
+		temporary_line.remove()         
+		temporary_line = null
 	combine_with(parent.get_state("GravityState"))
+	parent.dash_particles.emitting = false
 
 	
 func physics_process(delta):
 	if not has_released_dash:
-		Engine.time_scale = lerp(Engine.time_scale, 0.01, time_deacceleration)	
+		Engine.time_scale = lerp(Engine.time_scale, min_time_scale, time_deacceleration)	
 		parent.aim_pivot.rotation_degrees += rotation_speed * delta * (1 / Engine.time_scale * 0.5)
+		parent.camera.start_zoom(Vector2(0.8, 0.8), 0.02)
 	
 	if Input.is_action_just_released("jump") and not has_released_dash:
 		has_released_dash = true
@@ -41,15 +45,16 @@ func physics_process(delta):
 		temporary_line = load("res://src/TemporaryLine2D.tscn").instance()
 		get_tree().root.add_child(temporary_line)
 		temporary_line.points = [parent.global_position, parent.global_position]
+		
+		parent.dash_particles.emitting = true
+		parent.camera.reset_zoom(0.02)
+		
 
 	if has_released_dash:
 		timer += delta
-		
 		if parent.is_on_wall() or parent.is_on_ceiling():
 			temporary_line.add_point(parent.global_position)
-			print("got here")
-		
-		print(temporary_line.points.size())
+	
 		temporary_line.points[temporary_line.points.size() - 1] = parent.global_position	
 			
 		if timer >= dash_time:

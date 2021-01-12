@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 onready var aim_pivot = $AimPivot
+onready var dash_particles = $DashParticles
+onready var camera = $Camera2D
 
 var velocity = Vector2()
 var states = [] setget push_state
@@ -12,7 +14,7 @@ func _ready():
 	states.push_back(initial_state)
 
 func _physics_process(delta):
-	
+	print(dash_particles.emitting)
 	for state in states:
 		state.physics_process(delta)	
 
