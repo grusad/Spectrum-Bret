@@ -15,8 +15,6 @@ func _physics_process(delta):
 	
 	for state in states:
 		state.physics_process(delta)	
-		print(state.name)
-	print("")
 
 	velocity = move_and_slide(velocity, Vector2.UP)
 	

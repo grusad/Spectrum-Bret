@@ -41,6 +41,11 @@ jump={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Map"
+2d_physics/layer_2="Player"
+
 [rendering]
 
 vram_compression/import_etc=true
