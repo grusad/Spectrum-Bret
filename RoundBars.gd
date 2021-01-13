@@ -1,19 +1,18 @@
 tool
 extends Node2D
 
-export var bar_width = 4
+export var bar_width = 10
 export var space_between_bars = 2
 export (PoolColorArray) var colors = PoolColorArray()
+var radius = 20
 
-var total_h = 50
-var total_w = 400
 
 func _ready():
 	
 	var angle = PI
 	var angle_interval = 2 * PI / MusicManager.definition
-	var radius = 50
-	var length = 50
+	
+	var length = 20
 
 	
 	for i in MusicManager.definition:
@@ -22,8 +21,8 @@ func _ready():
 		var polygon_array = [
 			Vector2(0, 0),
 			Vector2(bar_width, 0),
-			Vector2(bar_width, 60),
-			Vector2(0, 60)
+			Vector2(bar_width, length),
+			Vector2(0, length)
 		]
 		polygon.polygon = polygon_array
 		
@@ -46,12 +45,11 @@ func _ready():
 		area.add_child(collision_polygon)
 		area.add_child(polygon)
 		add_child(area)
-		#area.position.x = i * space_between_bars * bar_width
 		var normal = Vector2(0, -1).rotated(angle)
 		var start_pos = (normal * radius)
 		area.position = start_pos
-		
-		
+		area.look_at(area.global_position - normal)
+		area.rotation_degrees += 90
 		angle += angle_interval
 		
 
@@ -67,7 +65,7 @@ func _physics_process(delta):
 		var force = MusicManager.histogram[i]
 		var push_force = 2
 		
-		#bar.position = Vector2(1, 0).rotated(pivots[i].rotation) * MusicManager.histogram[i] * 200
+		bar.position = Vector2(0, 1).rotated(bar.rotation) * (MusicManager.histogram[i] + radius * 0.01) * 100 
 		
 		if MusicManager.histogram[i] < 0.1:
 			pass
