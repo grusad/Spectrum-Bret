@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "KinematicEntity",
+"language": "GDScript",
+"path": "res://src/entities/KinematicEntity.gd"
+}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
 "path": "res://src/states/State.gd"
 } ]
 _global_script_class_icons={
+"KinematicEntity": "",
 "State": ""
 }
 
@@ -26,7 +32,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-MasterMusic="*res://src/MasterMusic.tscn"
+MusicManager="*res://src/MusicManager.tscn"
 
 [display]
 
@@ -45,6 +51,7 @@ jump={
 
 2d_physics/layer_1="Map"
 2d_physics/layer_2="Player"
+2d_physics/layer_3="Entity"
 
 [rendering]
 

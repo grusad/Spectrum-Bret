@@ -1,6 +1,6 @@
 extends State
 
-var acceleration = 6
+var acceleration = 2
 var max_walk_speed = 500
 
 func enter_state(parent, previous_state):

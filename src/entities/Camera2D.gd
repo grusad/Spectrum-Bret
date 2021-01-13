@@ -11,8 +11,11 @@ func _ready():
 
 func _physics_process(delta):
 	zoom = lerp(zoom, target, amount)
+
 	if zoom == target:
+		
 		set_physics_process(false)
+	
 
 func start_zoom(target, amount):
 	self.target = target

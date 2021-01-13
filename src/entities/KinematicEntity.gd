@@ -1,20 +1,14 @@
 extends KinematicBody2D
-
-onready var aim_pivot = $AimPivot
-onready var dash_particles = $DashParticles
-onready var camera = $Camera2D
+class_name KinematicEntity
 
 var velocity = Vector2()
 var states = [] setget push_state
 
 func _ready():
-	var initial_state = get_state("IdleState")
-	initial_state.enter_state(self, null)
-	initial_state.combine_with(get_state("GravityState"))
-	states.push_back(initial_state)
+	pass
 
 func _physics_process(delta):
-	print(dash_particles.emitting)
+	
 	for state in states:
 		state.physics_process(delta)	
 
@@ -24,8 +18,11 @@ func _process(delta):
 	for state in states:
 		state.process(delta)
 
-func apply_horizontal_movement(input_direction, acceleration, max_walk_speed, delta):
-	velocity.x = lerp(velocity.x, input_direction.x * max_walk_speed, acceleration * delta)
+func apply_movement(direction, acceleration, max_move_speed, delta):
+	velocity = lerp(velocity, direction * max_move_speed, acceleration * delta)
+
+func apply_horizontal_movement(input_direction, acceleration, max_move_speed, delta):
+	velocity.x = lerp(velocity.x, input_direction.x * max_move_speed, acceleration * delta)
 	
 func apply_horizontal_friction(friction, delta):
 	velocity.x = lerp(velocity.x, 0, friction * delta)
@@ -34,7 +31,6 @@ func apply_friction(friction, delta):
 	velocity = lerp(velocity, Vector2.ZERO, friction * delta)
 
 func apply_force(direction, force):
-	
 	velocity = direction * force
 
 func get_input_direction():

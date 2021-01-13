@@ -5,11 +5,16 @@ export var bar_width = 4
 export var space_between_bars = 2
 export (PoolColorArray) var colors = PoolColorArray()
 
-var total_h = 250
+var total_h = 50
 var total_w = 400
 
-
 func _ready():
+	
+	var angle = PI
+	var angle_interval = 2 * PI / MusicManager.definition
+	var radius = 50
+	var length = 50
+
 	
 	for i in MusicManager.definition:
 		var area = Area2D.new()
@@ -17,8 +22,8 @@ func _ready():
 		var polygon_array = [
 			Vector2(0, 0),
 			Vector2(bar_width, 0),
-			Vector2(bar_width, 200),
-			Vector2(0, 200)
+			Vector2(bar_width, 60),
+			Vector2(0, 60)
 		]
 		polygon.polygon = polygon_array
 		
@@ -39,16 +44,17 @@ func _ready():
 		var collision_polygon = CollisionPolygon2D.new()
 		collision_polygon.polygon = polygon_array
 		area.add_child(collision_polygon)
-		area.add_child(polygon)	
+		area.add_child(polygon)
 		add_child(area)
-		area.position.x = i * space_between_bars * bar_width
-	
-	
-	for child in get_children():
-		child.connect("body_entered", self, "on_body_entered")
+		#area.position.x = i * space_between_bars * bar_width
+		var normal = Vector2(0, -1).rotated(angle)
+		var start_pos = (normal * radius)
+		area.position = start_pos
+		
+		
+		angle += angle_interval
+		
 
-func on_body_entered(body):
-	pass
 
 func _physics_process(delta):
 	
@@ -61,8 +67,9 @@ func _physics_process(delta):
 		var force = MusicManager.histogram[i]
 		var push_force = 2
 		
-		bar.position.y = -MusicManager.histogram[i] * 200
+		#bar.position = Vector2(1, 0).rotated(pivots[i].rotation) * MusicManager.histogram[i] * 200
 		
 		if MusicManager.histogram[i] < 0.1:
-			bar.position.y = 0
+			pass
+			#bar.position.y = 0
 		
