@@ -9,7 +9,7 @@ var max_db = 0
 var min_db = -40
 var accel = 20
 var histogram = []
-var definition = 40
+const definition = 40
 
 func _ready():
 	max_db += audio_stream_player.volume_db

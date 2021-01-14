@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/MusicManager.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/GroundBars.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Game.gd" type="Script" id=3]
 [ext_resource path="res://src/entities/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/entities/BeatBoid.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/MapLine.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/RoundBars.tscn" type="PackedScene" id=7]
 
@@ -28,6 +27,22 @@ position = Vector2( -392, -184 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
+[node name="Obsticles" type="Node2D" parent="."]
+
+[node name="GroundBars" parent="Obsticles" instance=ExtResource( 2 )]
+position = Vector2( 302, 96 )
+colors = PoolColorArray( 0.854902, 0.372549, 0.498039, 1, 0.490196, 0.101961, 0.203922, 1 )
+
+[node name="GroundBars2" parent="Obsticles" instance=ExtResource( 2 )]
+position = Vector2( 128, -352 )
+rotation = 3.14159
+colors = PoolColorArray( 0.854902, 0.372549, 0.498039, 1, 0.490196, 0.101961, 0.203922, 1 )
+
+[node name="RoundBars" parent="Obsticles" instance=ExtResource( 7 )]
+position = Vector2( 920, -114.5 )
+bar_width = 2
+colors = PoolColorArray( 0.854902, 0.372549, 0.498039, 1, 0.854902, 0.372549, 0.498039, 1 )
+
 [node name="Map" type="Node2D" parent="."]
 
 [node name="MapLine" parent="Map" instance=ExtResource( 6 )]
@@ -36,34 +51,3 @@ points = PoolVector2Array( -728, 0, 280, 0, 280, 192, 600, 192, 600, 0, 1024, 0,
 
 [node name="MapLine2" parent="Map" instance=ExtResource( 6 )]
 points = PoolVector2Array( -704, -256, -192, -256, -192, -448, 128, -448, 128, -256, 832, -256, 832, -576, 576, -576, 576, -704, 320, -704 )
-
-[node name="Entities" type="Node2D" parent="."]
-visible = false
-
-[node name="BeatBoid2" parent="Entities" instance=ExtResource( 5 )]
-position = Vector2( -72, -120 )
-
-[node name="BeatBoid3" parent="Entities" instance=ExtResource( 5 )]
-position = Vector2( -24, -72 )
-
-[node name="BeatBoid4" parent="Entities" instance=ExtResource( 5 )]
-position = Vector2( 48, -200 )
-
-[node name="BeatBoid5" parent="Entities" instance=ExtResource( 5 )]
-position = Vector2( 56, -112 )
-
-[node name="BeatBoid6" parent="Entities" instance=ExtResource( 5 )]
-position = Vector2( -48, -180 )
-
-[node name="Obsticles" type="Node2D" parent="."]
-
-[node name="GroundBars" parent="Obsticles" instance=ExtResource( 2 )]
-position = Vector2( 288, 0 )
-
-[node name="GroundBars2" parent="Obsticles" instance=ExtResource( 2 )]
-position = Vector2( 128, -248 )
-rotation = 3.14159
-colors = PoolColorArray( 0.443137, 0.572549, 0.956863, 1, 0.729412, 0.345098, 0.85098, 1 )
-
-[node name="RoundBars" parent="Obsticles" instance=ExtResource( 7 )]
-colors = PoolColorArray( 0.721569, 0.403922, 0.74902, 1, 0.721569, 0.403922, 0.74902, 1 )

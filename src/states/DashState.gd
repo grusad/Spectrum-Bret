@@ -20,13 +20,20 @@ func enter_state(parent, previous_state):
 	
 	
 func exit_state():
+	.exit_state()
 	timer = 0
+	
+	if(not has_released_dash):
+		Engine.time_scale = 1.0
+		parent.aim_pivot.visible = false
+	
 	has_released_dash = false
 	if temporary_line:
 		temporary_line.remove()         
 		temporary_line = null
-	combine_with(parent.get_state("GravityState"))
+	parent.push_state(parent.get_state("GravityState"))
 	parent.dash_particles.emitting = false
+	print("removed")
 
 	
 func physics_process(delta):

@@ -10,5 +10,8 @@ func _ready():
 	
 	var initial_state = get_state("IdleState")
 	initial_state.enter_state(self, null)
-	initial_state.combine_with(get_state("GravityState"))
+	var gravity_state = get_state("GravityState")
+	gravity_state.enter_state(self, null)
+	states.push_back(gravity_state)
 	states.push_back(initial_state)
+	

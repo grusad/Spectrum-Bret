@@ -11,11 +11,12 @@ func enter_state(parent, previous_state):
 	parent.apply_force(Vector2.UP, jump_force)
 	
 func exit_state():
+	.exit_state()
 	current_dash = 0
 	
 func physics_process(delta):
-	
-	if not parent.has_state("DashState"):
+	.physics_process(delta)
+	if not has_child_state(parent.get_state("DashState")):
 		var input_direction = parent.get_input_direction()
 		if input_direction.x != 0:
 			parent.apply_horizontal_movement(input_direction, acceleration, max_air_speed, delta)
@@ -28,8 +29,6 @@ func physics_process(delta):
 		combine_with(parent.get_state("DashState"))
 		
 	if parent.is_on_floor():
-		if parent.has_state("DashState"):
-			remove_state(parent.get_state("DashState"))
 		transition_to(parent.get_state("IdleState"))
 		
 	

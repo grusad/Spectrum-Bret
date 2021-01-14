@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/states/States.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/Player.gd" type="Script" id=2]
 [ext_resource path="res://src/entities/Camera2D.gd" type="Script" id=3]
+[ext_resource path="res://assets/untitled.png" type="Texture" id=4]
+[ext_resource path="res://assets/untitled (2).png" type="Texture" id=5]
 [ext_resource path="res://assets/glowing_circle.png" type="Texture" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 24.0
+radius = 16.0
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.840173, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -38,6 +40,10 @@ zoom = Vector2( 1.25, 1.25 )
 smoothing_enabled = true
 script = ExtResource( 3 )
 
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
@@ -46,16 +52,22 @@ shape = SubResource( 1 )
 [node name="AimPivot" type="Node2D" parent="."]
 visible = false
 
-[node name="Aim" type="Line2D" parent="AimPivot"]
-points = PoolVector2Array( 24, 0, 48, 0 )
-width = 4.0
+[node name="untitled (2)" type="Sprite" parent="AimPivot"]
+position = Vector2( 18.2769, 3.24317 )
+rotation = 2.42764
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 5 )
+
+[node name="untitled (2)2" type="Sprite" parent="AimPivot"]
+position = Vector2( 18.2769, -3.50328 )
+rotation = 3.84903
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 5 )
+flip_v = true
 
 [node name="DashParticles" type="Particles2D" parent="."]
 emitting = false
 amount = 64
 local_coords = false
 process_material = SubResource( 4 )
-texture = ExtResource( 9 )
-
-[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 9 )
