@@ -65,6 +65,10 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 5 )
 flip_v = true
 
+[node name="RayCast2D" type="RayCast2D" parent="AimPivot"]
+enabled = true
+cast_to = Vector2( 100, 0 )
+
 [node name="DashParticles" type="Particles2D" parent="."]
 emitting = false
 amount = 64

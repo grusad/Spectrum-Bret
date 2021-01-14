@@ -10,8 +10,8 @@ func _ready():
 func _physics_process(delta):
 	
 	for state in states:
-		state.physics_process(delta)	
-
+		state.physics_process(delta)
+	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 func _process(delta):
@@ -46,11 +46,23 @@ func push_state(state):
 	if has_state(state):
 		return
 	states.push_back(state)
-	
+
+#does root state exist?
 func has_state(state):
 	if typeof(state) == TYPE_STRING:
 		return states.has(get_state(state))
 	return states.has(state)
+
+#does state exists in hirarchy (children included)
+func has_state_deep(lookup):
+	if states.has(lookup):
+		return true
+	
+	for state in states:
+		if state.has_child_state(lookup):
+			return true
+			
+	return false	
 	
 
 	

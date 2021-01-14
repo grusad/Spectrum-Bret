@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/states/MoveState.gd" type="Script" id=1]
 [ext_resource path="res://src/states/DashState.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/states/IdleState.gd" type="Script" id=6]
 [ext_resource path="res://src/states/AI_IdleState.gd" type="Script" id=7]
 [ext_resource path="res://src/states/AI_BoidMoveState.gd" type="Script" id=8]
+[ext_resource path="res://src/states/LaserBeamState.gd" type="Script" id=9]
 
 [node name="States" type="Node"]
 
@@ -34,3 +35,6 @@ script = ExtResource( 7 )
 
 [node name="AI_BoidMoveState" type="Node" parent="."]
 script = ExtResource( 8 )
+
+[node name="LaserBeamState" type="Node" parent="."]
+script = ExtResource( 9 )

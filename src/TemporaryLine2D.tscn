@@ -7,7 +7,6 @@ offsets = PoolRealArray( 0, 0.183761, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 0.192157, 0.596078, 0.94902, 1, 0.192157, 0.596078, 0.94902, 1 )
 
 [node name="TemporaryLine2D" type="Line2D"]
-points = PoolVector2Array( 40, -152 )
 gradient = SubResource( 1 )
 joint_mode = 2
 begin_cap_mode = 2

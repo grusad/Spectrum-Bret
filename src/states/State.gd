@@ -32,14 +32,17 @@ func transition_to(new_state):
 	new_state.enter_state(parent, self)
 	parent.states.erase(self)
 	parent.push_state(new_state)
-
+	
 # can combine states to be processed paralell with parent
 func combine_with(new_state):
 	new_state.enter_state(parent, null)
 	new_state.parent_state = self
 	self.child_states.push_back(new_state)
 	
-	
+func add_state_as_root(state):
+	state.enter_state(parent, null)
+	parent.push_state(state)
+
 func remove_state(state):
 	state.exit_state()
 	parent.states.erase(state)

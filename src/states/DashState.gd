@@ -37,6 +37,8 @@ func exit_state():
 
 	
 func physics_process(delta):
+	.physics_process(delta)
+	
 	if not has_released_dash:
 		Engine.time_scale = lerp(Engine.time_scale, min_time_scale, time_deacceleration)	
 		parent.aim_pivot.rotation_degrees += rotation_speed * delta * (1 / Engine.time_scale * 0.5)

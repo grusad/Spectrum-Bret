@@ -28,6 +28,9 @@ func physics_process(delta):
 		current_dash += 1
 		combine_with(parent.get_state("DashState"))
 		
+	if Input.is_action_just_pressed("fire"):
+		add_state_as_root(parent.get_state("LaserBeamState"))
+		
 	if parent.is_on_floor():
 		transition_to(parent.get_state("IdleState"))
 		
