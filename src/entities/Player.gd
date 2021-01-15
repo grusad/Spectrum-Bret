@@ -4,6 +4,7 @@ onready var aim_pivot = $AimPivot
 onready var dash_particles = $DashParticles
 onready var camera = $Camera2D
 onready var aim_ray = $AimPivot/RayCast2D
+onready var charge_particles = $ChargeParticles
 
 func _ready():
 	

@@ -22,7 +22,7 @@ func enter_state(parent, previous_state):
 func exit_state():
 	.exit_state()
 	timer = 0
-	
+	parent.charge_particles.emitting = false
 	if(not has_released_dash):
 		Engine.time_scale = 1.0
 		parent.aim_pivot.visible = false
@@ -33,7 +33,6 @@ func exit_state():
 		temporary_line = null
 	parent.push_state(parent.get_state("GravityState"))
 	parent.dash_particles.emitting = false
-	print("removed")
 
 	
 func physics_process(delta):
@@ -42,16 +41,18 @@ func physics_process(delta):
 	if not has_released_dash:
 		Engine.time_scale = lerp(Engine.time_scale, min_time_scale, time_deacceleration)	
 		parent.aim_pivot.rotation_degrees += rotation_speed * delta * (1 / Engine.time_scale * 0.5)
+		parent.charge_particles.emitting = true
 		parent.camera.start_zoom(Vector2(0.8, 0.8), 0.02)
 	
 	if Input.is_action_just_released("jump") and not has_released_dash:
 		has_released_dash = true
+		parent.charge_particles.emitting = false	
 		Engine.time_scale = 1.0
 		parent.apply_force(Vector2(1, 0).rotated(parent.aim_pivot.rotation), force)
 		parent.aim_pivot.rotation_degrees = 0
 		parent.aim_pivot.visible = false
 		
-		temporary_line = load("res://src/TemporaryLine2D.tscn").instance()
+		temporary_line = load("res://src/utils/TemporaryLine2D.tscn").instance()
 		get_tree().root.add_child(temporary_line)
 		temporary_line.points = [parent.global_position, parent.global_position]
 		

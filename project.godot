@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Line2D",
+"class": "BaseMapLine",
+"language": "GDScript",
+"path": "res://src/level/BaseMapLine.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "KinematicEntity",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://src/states/State.gd"
 } ]
 _global_script_class_icons={
+"BaseMapLine": "",
 "KinematicEntity": "",
 "State": ""
 }
@@ -33,6 +39,10 @@ config/icon="res://icon.png"
 [autoload]
 
 MusicManager="*res://src/MusicManager.tscn"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [display]
 

@@ -43,7 +43,7 @@ func physics_process(delta):
 		var from_pos = parent.global_position
 		var to_pos = from_pos + Vector2(1, 0).rotated(parent.aim_pivot.rotation) * beam_length
 		
-		var temporary_line = load("res://src/TemporaryLine2D.tscn").instance()
+		var temporary_line = load("res://src/utils/TemporaryLine2D.tscn").instance()
 		temporary_line.init(2, Color.rebeccapurple)
 		get_tree().root.add_child(temporary_line)
 		temporary_line.points = [from_pos, to_pos]
