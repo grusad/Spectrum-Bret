@@ -3,13 +3,16 @@ extends Node
 onready var spectrum = AudioServer.get_bus_effect_instance(1,0)
 onready var audio_stream_player = $AudioStreamPlayer
 
+const definition = 40
+const min_scale = 0.5
+const max_scale = 1
+
 var min_freq = 20
 var max_freq = 20000
 var max_db = 0
 var min_db = -40
 var accel = 20
 var histogram = []
-const definition = 40
 
 func _ready():
 	max_db += audio_stream_player.volume_db
@@ -19,6 +22,8 @@ func _ready():
 		histogram.append(0)
 
 func _process(delta):
+	
+	audio_stream_player.pitch_scale = min_scale + (Engine.time_scale * (max_scale - min_scale))
 	process_spectrum_analyzer(delta)
 	
 	

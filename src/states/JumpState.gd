@@ -1,6 +1,6 @@
 extends State
 
-var jump_force = 1000
+var jump_force = 1200
 var acceleration = 6
 var max_air_speed = 500
 var max_dash = 1

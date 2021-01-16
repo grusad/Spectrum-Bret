@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/music/ES_Dawn of Days - Lonov .wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/music/Of-Far-Different-Nature-Escape-04-Pure-_CC-BY_.ogg" type="AudioStream" id=1]
 [ext_resource path="res://src/MusicManager.gd" type="Script" id=2]
 
 [node name="MusicManager" type="Node"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Of-Far-Different-Nature-Escape-11-Jellyfish-_CC-BY_.ogg-f0b180da5359e51dcede26883e4f05e7.oggstr"
+
+[deps]
+
+source_file="res://assets/music/Of-Far-Different-Nature-Escape-11-Jellyfish-_CC-BY_.ogg"
+dest_files=[ "res://.import/Of-Far-Different-Nature-Escape-11-Jellyfish-_CC-BY_.ogg-f0b180da5359e51dcede26883e4f05e7.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Of-Far-Different-Nature-Escape-05-Silence-_CC-BY_.ogg-1dd32e7d3c7b5e1eff9f6fcb020f6088.oggstr"
+
+[deps]
+
+source_file="res://assets/music/Of-Far-Different-Nature-Escape-05-Silence-_CC-BY_.ogg"
+dest_files=[ "res://.import/Of-Far-Different-Nature-Escape-05-Silence-_CC-BY_.ogg-1dd32e7d3c7b5e1eff9f6fcb020f6088.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
