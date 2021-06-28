@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/obsticles/round_bar/RoundBars.gd" type="Script" id=2]
+[ext_resource path="res://src/obsticles/round_bar/Pivot.gd" type="Script" id=3]
+[ext_resource path="res://assets/spot.png" type="Texture" id=4]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.490909 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=1]
+flag_disable_z = true
+spread = 176.81
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 40.0
+initial_velocity_random = 0.98
+orbit_velocity = 0.0
+orbit_velocity_random = 0.09
+scale = 0.2
+scale_random = 0.2
+scale_curve = SubResource( 3 )
+
+[node name="RoundBars" type="Node2D"]
+script = ExtResource( 2 )
+colors = PoolColorArray( 0.239216, 0.780392, 0.388235, 1, 0.827451, 0.0627451, 0.0627451, 1 )
+radius = 100
+
+[node name="Pivot" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Particles2D" type="Particles2D" parent="Pivot"]
+amount = 128
+lifetime = 4.0
+local_coords = false
+process_material = SubResource( 1 )
+texture = ExtResource( 4 )
+
+[node name="Bars" type="Node2D" parent="."]

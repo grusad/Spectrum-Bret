@@ -1,3 +1,4 @@
+tool
 extends Node
 
 onready var spectrum = AudioServer.get_bus_effect_instance(1,0)

@@ -54,18 +54,13 @@ func _ready():
 		area.rotation_degrees += 90
 		angle += angle_interval
 		
-		
-		
-
+	
 
 func _physics_process(delta):
 	
 	if Engine.is_editor_hint():
 		return
 		
-	
-	pivot.rotation_degrees += delta * 100
-	
 	
 	for i in range(bars.get_child_count()):
 		var bar = bars.get_child(i)
